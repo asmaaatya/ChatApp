@@ -1,5 +1,5 @@
- ChatApp using firebase services
- RealTime Database
- Notification
+ ChatApp using firebase services:
+ RealTime Database,
+ Notification,
  Auto reply 
  
