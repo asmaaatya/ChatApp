@@ -4,10 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.ktx.Firebase;
+
 
 import java.util.ArrayList;
 
@@ -32,8 +38,25 @@ ArrayList<FriendlyMessage> friendlyMessages=new ArrayList<>();
     @Override
     public void onBindViewHolder(@NonNull MessageHolder holder, int position) {
    FriendlyMessage message=friendlyMessages.get(position);
-holder.message_sender.setText(message.getName());
-holder.message_content.setText(message.getText());
+
+
+        boolean isPhoto = message.getPhotoUrl() != null;
+        if (isPhoto) {
+
+            holder.message_content.setVisibility(View.GONE);
+            holder.userimg.setVisibility(View.VISIBLE);
+            Glide.with(holder.userimg.getContext())
+                    .load(message.getPhotoUrl())
+                    .into(holder.userimg);
+       } else {
+
+        holder.message_content.setVisibility(View.VISIBLE);
+            holder.userimg.setVisibility(View.VISIBLE);
+            holder.message_content.setText(message.getText());
+        }
+        holder.message_sender.setText(message.getName());
+        holder.userimg.setImageResource(R.drawable.ic_launcher_foreground);
+
     }
 
     @Override
@@ -43,10 +66,12 @@ holder.message_content.setText(message.getText());
 
     public  class MessageHolder extends RecyclerView.ViewHolder{
 TextView message_sender,message_content;
+ImageView userimg;
         public MessageHolder(@NonNull View itemView) {
             super(itemView);
             message_sender=itemView.findViewById(R.id.message_sender);
             message_content=itemView.findViewById(R.id.message_content);
+            userimg=itemView.findViewById(R.id.user_img);
         }
     }
 }

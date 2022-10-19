@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/message_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/reply_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/message_list"
-        android:layout_alignParentTop="true"/>
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:id="@+id/chatImg"
-    />
+        android:layout_below="@id/message_list"
+        android:text="my reply"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+
+    <ImageButton
+        android:id="@+id/chatImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+android:layout_below="@id/reply_text"
+        android:background="@drawable/ic_baseline_image_24" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edittext_message"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:hint="chat me"
-        />
+        android:textSize="20sp" />
 
     <Button
+        android:id="@+id/send_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:text="Send"
-        android:id="@+id/send_btn"/>
-
+        android:textColor="@color/black"/>
 
 </RelativeLayout>
+</ScrollView>
